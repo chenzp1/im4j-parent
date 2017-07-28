@@ -9,6 +9,19 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <dependencies>
+        <dependency>
+            <groupId>im4j</groupId>
+            <artifactId>im4j-dao</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>im4j</groupId>
+            <artifactId>im4j-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
     <artifactId>im4j-service</artifactId>
 
 
