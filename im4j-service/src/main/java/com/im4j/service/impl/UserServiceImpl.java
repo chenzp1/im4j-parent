@@ -29,7 +29,6 @@ public class UserServiceImpl implements UserService{
      * @return
      */
     public User register(User user) {
-        if(true){throw new ClientException("123");}
         UserExample userExample = new UserExample();
         userExample.createCriteria().andUserNameEqualTo(user.getUserName());
         List<User> users = userMapper.selectByExample(userExample);

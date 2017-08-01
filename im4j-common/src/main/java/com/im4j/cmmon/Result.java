@@ -4,21 +4,18 @@ package com.im4j.cmmon;
  * Created by chenzp on 2017/7/27 0027.
  */
 public class Result {
-
-    private static Result result;
-
-    private static int code;
-
+    private int code;
     private String msg;
-
     private Object data;
+    public static int SUCCESS = 200;
+    public static int ERROR = -1;
 
-    public Object getData() {
-        return data;
+    public  int getCode() {
+        return code;
     }
 
-    public void setData(Object data) {
-        this.data = data;
+    public  void setCode(int code) {
+        this.code = code;
     }
 
     public String getMsg() {
@@ -29,33 +26,26 @@ public class Result {
         this.msg = msg;
     }
 
-    public static int SUCCESS = 200;
-
-    public static int ERROR = -1;
-
-    public  int getCode() {
-        return code;
+    public Object getData() {
+        return data;
     }
 
-    public static void setCode(int code) {
-        Result.code = code;
-    }
-
-    static {
-        result = new Result();
+    public void setData(Object data) {
+        this.data = data;
     }
 
     public static Result getInstance(Object data){
+        Result result = new Result();
         result.setCode(SUCCESS);
         result.setData(data);
         result.setMsg("");
         return  result;
     }
-
     public static Result getErrorInstance(String msg){
+        Result result = new Result();
         result.setCode(ERROR);
         result.setMsg(msg);
-        result.setData(new Object());
+        result.setData("");
         return  result;
     }
 }

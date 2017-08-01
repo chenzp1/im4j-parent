@@ -33,6 +33,7 @@ public class ExceptionHandler {
             if(e instanceof ClientException){
                 return Result.getErrorInstance(e.getMessage());
             }
+            return Result.getErrorInstance("服务器繁忙");
         }
         return o;
     }
