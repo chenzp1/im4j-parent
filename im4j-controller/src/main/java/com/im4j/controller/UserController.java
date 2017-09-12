@@ -22,12 +22,12 @@ public class UserController {
     private UserService userService;
 
 
-    /**
+    /** 
      * 用户注册
      * @param user
      * @return
      */
-    @RequestMapping("register.do")
+    @RequestMapping("register")
     @ResponseBody
     public Result register(@RequestBody  User user){
         return  Result.getInstance(userService.register(user));

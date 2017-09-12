@@ -30,6 +30,7 @@ public class ExceptionHandler {
         try {
             o = p.proceed();
         }catch (Throwable e){
+            e.printStackTrace();
             if(e instanceof ClientException){
                 return Result.getErrorInstance(e.getMessage());
             }
