@@ -1,11 +1,13 @@
 package com.im4j.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.im4j.dao.UserMapper;
 import com.im4j.example.UserExample;
 import com.im4j.exception.ClientException;
 import com.im4j.pojo.User;
 import com.im4j.pojo.ex.UserEx;
 import com.im4j.service.UserService;
+import com.im4j.service.activemq.ProducerService;
 import com.im4j.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,9 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private ProducerService producerService;
+
     /**
      * 用户注册
      * @param user
@@ -39,6 +44,7 @@ public class UserServiceImpl implements UserService{
         user.setCreateTime(new Date());
         user.setId(StringUtils.getUuid());
         userMapper.insert(user);
+        producerService.sendMessage(JSONObject.toJSONString(user));
         return user;
     }
 }

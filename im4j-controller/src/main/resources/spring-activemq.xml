@@ -32,17 +32,17 @@
     </bean>
 
     <!-- 定义消息队列（Queue） -->
-    <bean id="demoQueueDestination" class="org.apache.activemq.command.ActiveMQQueue">
+    <bean id="mailQueueDestination" class="org.apache.activemq.command.ActiveMQQueue">
         <!-- 设置消息队列的名字 -->
         <constructor-arg>
-            <value>im4j</value>
+            <value>mail</value>
         </constructor-arg>
     </bean>
 
     <!-- 配置JMS模板（Queue），Spring提供的JMS工具类，它发送、接收消息。 -->
     <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
         <property name="connectionFactory" ref="connectionFactory" />
-        <property name="defaultDestination" ref="demoQueueDestination" />
+        <property name="defaultDestination" ref="mailQueueDestination" />
         <property name="receiveTimeout" value="10000" />
         <!-- true是topic，false是queue，默认是false，此处显示写出false -->
         <property name="pubSubDomain" value="false" />
@@ -50,13 +50,13 @@
 
 
     <!-- 配置消息队列监听者（Queue） -->
-    <bean id="queueMessageListener" class="com.im4j.service.activemq.QueueMessageListener" />
+    <bean id="queueMessageListener" class="com.im4j.service.activemq.MailMessageListener" />
 
     <!-- 显示注入消息监听容器（Queue），配置连接工厂，监听的目标是demoQueueDestination，监听器是上面定义的监听器 -->
     <bean id="queueListenerContainer"
           class="org.springframework.jms.listener.DefaultMessageListenerContainer">
         <property name="connectionFactory" ref="connectionFactory" />
-        <property name="destination" ref="demoQueueDestination" />
+        <property name="destination" ref="mailQueueDestination" />
         <property name="messageListener" ref="queueMessageListener" />
     </bean>
 
