@@ -71,4 +71,10 @@ public class UserController {
             }
         }
     }
+
+    @RequestMapping("test")
+    @ResponseBody
+    public String test(){
+        return "123";
+    }
 }
