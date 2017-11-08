@@ -1,12 +1,15 @@
 package com.im4j.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.im4j.pojo.TextMessage;
+import com.im4j.utils.HttpclientUtil;
 import com.im4j.utils.WechatMessageUtil;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -34,7 +37,12 @@ public class WechatService {
             textMessage.setToUserName(fromUserName);
             textMessage.setFromUserName(toUserName);
             textMessage.setCreateTime(System.currentTimeMillis());
-            textMessage.setContent("我已经收到你发来的消息了");
+            Map tulingMap = new HashMap();
+            tulingMap.put("key","27629555be9b4ebf86fc3b1bc9452441");
+            tulingMap.put("info",map.get("Content"));
+            tulingMap.put("userid","1");
+            String result = HttpclientUtil.doGet("http://www.tuling123.com/openapi/api",tulingMap);
+            textMessage.setContent(JSONObject.parseObject(result).getString("text"));
             responseMessage = WechatMessageUtil.textMessageToXml(textMessage);
         }
         log.info(responseMessage);

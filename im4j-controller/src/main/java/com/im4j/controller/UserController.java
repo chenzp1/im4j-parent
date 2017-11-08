@@ -84,22 +84,18 @@ public class UserController {
 
     /**
      *
-     * @param out
      * @param request
-     * @param response
      */
     @RequestMapping(value = "acceptMsg", method = RequestMethod.POST)
     @ResponseBody
-    public void acceptMsg(PrintWriter out, HttpServletRequest request, HttpServletResponse response){
+    public String acceptMsg(HttpServletRequest request){
         String responseMessage = wechatService.processRequest(request);
-        logger.info("返回消息:"+responseMessage);
-        out.print(responseMessage);
-        out.flush();
+        return responseMessage;
     }
 
     @RequestMapping("test")
     @ResponseBody
     public String test(){
-        return "123";
+        return "好好";
     }
 }
