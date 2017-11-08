@@ -85,9 +85,9 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "acceptMsg", method = RequestMethod.POST)
-    public String acceptMsg(@RequestBody String wxMsg){
-        logger.info(wxMsg);
-        return "123";
+    @ResponseBody
+    public Object acceptMsg(@RequestBody WxMsg wxMsg){
+        return wxMsg;
     }
 
     @RequestMapping("test")

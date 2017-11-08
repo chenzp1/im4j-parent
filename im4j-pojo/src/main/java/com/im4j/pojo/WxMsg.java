@@ -9,27 +9,21 @@ import javax.xml.bind.annotation.XmlRootElement;
  * Created by chenzp on 2017/11/8 0008.
  */
 @XmlRootElement(name="xml")
-@XmlAccessorType(XmlAccessType.FIELD)
 public class WxMsg {
 
-    @XmlElement(name="ToUserName")
     private String toUserName;
 
-    @XmlElement(name="FromUserName")
     private String fromUserName;
 
-    @XmlElement(name="CreateTime")
     private Integer createTime;
 
-    @XmlElement(name="MsgType")
     private String msgType;
 
-    @XmlElement(name="Content")
     private String content;
 
-    @XmlElement(name="MsgId")
     private String msgId;
 
+    @XmlElement(name="ToUserName")
     public String getToUserName() {
         return toUserName;
     }
@@ -38,6 +32,7 @@ public class WxMsg {
         this.toUserName = toUserName;
     }
 
+    @XmlElement(name="FromUserName")
     public String getFromUserName() {
         return fromUserName;
     }
@@ -46,6 +41,7 @@ public class WxMsg {
         this.fromUserName = fromUserName;
     }
 
+    @XmlElement(name="CreateTime")
     public Integer getCreateTime() {
         return createTime;
     }
@@ -54,6 +50,7 @@ public class WxMsg {
         this.createTime = createTime;
     }
 
+    @XmlElement(name="MsgType")
     public String getMsgType() {
         return msgType;
     }
@@ -62,6 +59,7 @@ public class WxMsg {
         this.msgType = msgType;
     }
 
+    @XmlElement(name="Content")
     public String getContent() {
         return content;
     }
@@ -70,6 +68,7 @@ public class WxMsg {
         this.content = content;
     }
 
+    @XmlElement(name="MsgId")
     public String getMsgId() {
         return msgId;
     }
