@@ -40,7 +40,7 @@ public class WechatService {
             Map tulingMap = new HashMap();
             tulingMap.put("key","27629555be9b4ebf86fc3b1bc9452441");
             tulingMap.put("info",map.get("Content"));
-            tulingMap.put("userid","1");
+            tulingMap.put("userid",fromUserName);
             String result = HttpclientUtil.doGet("http://www.tuling123.com/openapi/api",tulingMap);
             textMessage.setContent(JSONObject.parseObject(result).getString("text"));
             responseMessage = WechatMessageUtil.textMessageToXml(textMessage);
