@@ -16,7 +16,7 @@ import javax.jms.Session;
 @Service
 public class ProducerService {
 
-    @Autowired
+//    @Autowired
     private JmsTemplate jmsTemplate;
 
     public void sendMessage(final String msg){

@@ -17,34 +17,33 @@ import javax.jms.TextMessage;
 /**
  * Created by chenzp on 2017/9/12 0012.
  */
-@Controller
 public class MessageController {
-    private Logger logger = LoggerFactory.getLogger(MessageController.class);
-    @Autowired
-    private Destination destination;
-
-    //队列消息生产者
-    @Autowired
-    private ProducerService producer;
-
-    //队列消息消费者
-    @Autowired
-    private ConsumerService consumer;
-
-    @RequestMapping(value = "sendMessage", method = RequestMethod.POST)
-    @ResponseBody
-    public void send(String msg) {
-        logger.info(Thread.currentThread().getName()+"------------send to jms Start");
-        producer.sendMessage(msg);
-        logger.info(Thread.currentThread().getName()+"------------send to jms End");
-    }
-
-    @RequestMapping(value= "receiveMessage",method = RequestMethod.GET)
-    @ResponseBody
-    public Object receive(){
-        logger.info(Thread.currentThread().getName()+"------------receive from jms Start");
-        TextMessage tm = consumer.receive(destination);
-        logger.info(Thread.currentThread().getName()+"------------receive from jms End");
-        return tm;
-    }
+//    private Logger logger = LoggerFactory.getLogger(MessageController.class);
+//    @Autowired
+//    private Destination destination;
+//
+//    //队列消息生产者
+//    @Autowired
+//    private ProducerService producer;
+//
+//    //队列消息消费者
+//    @Autowired
+//    private ConsumerService consumer;
+//
+//    @RequestMapping(value = "sendMessage", method = RequestMethod.POST)
+//    @ResponseBody
+//    public void send(String msg) {
+//        logger.info(Thread.currentThread().getName()+"------------send to jms Start");
+//        producer.sendMessage(msg);
+//        logger.info(Thread.currentThread().getName()+"------------send to jms End");
+//    }
+//
+//    @RequestMapping(value= "receiveMessage",method = RequestMethod.GET)
+//    @ResponseBody
+//    public Object receive(){
+//        logger.info(Thread.currentThread().getName()+"------------receive from jms Start");
+//        TextMessage tm = consumer.receive(destination);
+//        logger.info(Thread.currentThread().getName()+"------------receive from jms End");
+//        return tm;
+//    }
 }

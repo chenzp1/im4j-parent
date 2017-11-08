@@ -14,7 +14,7 @@ import javax.jms.TextMessage;
 @Service
 public class ConsumerService {
 
-    @Autowired
+//    @Autowired
     private JmsTemplate jmsTemplate;
 
     public TextMessage receive(Destination destination){
