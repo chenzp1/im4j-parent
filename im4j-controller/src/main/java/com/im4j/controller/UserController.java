@@ -51,7 +51,7 @@ public class UserController {
         boolean isGet = request.getMethod().toLowerCase().equals("get");
         PrintWriter print;
         if (isGet) {
-            // 微信加密签
+            // 微信加密签111
             String signature = request.getParameter("signature");
             // 时间戳
             String timestamp = request.getParameter("timestamp");
