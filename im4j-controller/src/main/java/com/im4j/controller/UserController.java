@@ -2,8 +2,8 @@ package com.im4j.controller;
 
 import com.im4j.cmmon.Result;
 import com.im4j.pojo.User;
-import com.im4j.pojo.WxMsg;
 import com.im4j.service.UserService;
+import com.im4j.service.WechatService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +32,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private WechatService wechatService;
 
 
     /** 
@@ -80,14 +83,18 @@ public class UserController {
 
 
     /**
-     * 接受消息
-     * @param wxMsg
-     * @return
+     *
+     * @param out
+     * @param request
+     * @param response
      */
     @RequestMapping(value = "acceptMsg", method = RequestMethod.POST)
     @ResponseBody
-    public Object acceptMsg(@RequestBody WxMsg wxMsg){
-        return wxMsg;
+    public void acceptMsg(PrintWriter out, HttpServletRequest request, HttpServletResponse response){
+        String responseMessage = wechatService.processRequest(request);
+        logger.info("返回消息:"+responseMessage);
+        out.print(responseMessage);
+        out.flush();
     }
 
     @RequestMapping("test")
