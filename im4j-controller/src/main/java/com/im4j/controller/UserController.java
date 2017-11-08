@@ -2,11 +2,15 @@ package com.im4j.controller;
 
 import com.im4j.cmmon.Result;
 import com.im4j.pojo.User;
+import com.im4j.pojo.WxMsg;
 import com.im4j.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +27,8 @@ import java.io.PrintWriter;
 @Controller
 @RequestMapping("user")
 public class UserController {
+
+    Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private UserService userService;
@@ -41,12 +47,12 @@ public class UserController {
 
 
     /**
-     * 微信消息接收和token验证
+     * token验证
      * @param request
      * @param response
      * @throws IOException
      */
-    @RequestMapping("token")
+    @RequestMapping(value = "acceptMsg", method = RequestMethod.GET)
     public void token( HttpServletRequest request,HttpServletResponse response) throws IOException {
         boolean isGet = request.getMethod().toLowerCase().equals("get");
         PrintWriter print;
@@ -70,6 +76,18 @@ public class UserController {
                 }
             }
         }
+    }
+
+
+    /**
+     * 接受消息
+     * @param wxMsg
+     * @return
+     */
+    @RequestMapping(value = "acceptMsg", method = RequestMethod.POST)
+    public String acceptMsg(@RequestBody WxMsg wxMsg){
+        logger.info(wxMsg.getToUserName());
+        return "123";
     }
 
     @RequestMapping("test")
