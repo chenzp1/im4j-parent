@@ -11,7 +11,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.im4j.pojo.TextMessage;
+import com.im4j.pojo.wx.NewMessage;
+import com.im4j.pojo.wx.TextMessage;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
@@ -123,6 +124,19 @@ public class WechatMessageUtil {
         XStream xstream = new XStream();
         xstream.alias("xml", textMessage.getClass());
         return xstream.toXML(textMessage);
+
+    }
+
+    /**
+     * 图文消息转化为xml
+     *
+     * @param newMessage
+     * @return
+     */
+    public static String newMessageToXml(NewMessage newMessage) {
+        XStream xstream = new XStream();
+        xstream.alias("xml", newMessage.getClass());
+        return xstream.toXML(newMessage);
 
     }
 

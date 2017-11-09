@@ -1,4 +1,4 @@
-package com.im4j.pojo;
+package com.im4j.pojo.wx;
 
 /**
  * Created by chenzp on 2017/11/8 0008.
@@ -20,10 +20,7 @@ public class BaseWechatMessage {
      * 消息类型
      */
     private String MsgType;
-    /**
-     * 消息id，64位整型
-     */
-    private String MsgId;
+
     public String getToUserName() {
         return ToUserName;
     }
@@ -48,10 +45,5 @@ public class BaseWechatMessage {
     public void setMsgType(String msgType) {
         MsgType = msgType;
     }
-    public String getMsgId() {
-        return MsgId;
-    }
-    public void setMsgId(String msgId) {
-        MsgId = msgId;
-    }
+
 }

@@ -11,4 +11,8 @@ public class StringUtils {
         return UUID.randomUUID().toString().replace("-","");
     }
 
+    public static boolean isEmpty(String param){
+        return param == null || param.length()==0;
+    }
+
 }
