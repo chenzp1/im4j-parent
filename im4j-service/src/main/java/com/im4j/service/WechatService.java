@@ -67,6 +67,7 @@ public class WechatService {
                 articles.add(article);
                 newMessage.setArticles(articles);
                 responseMessage = WechatMessageUtil.newMessageToXml(newMessage);
+                responseMessage = responseMessage.replace("com.im4j.pojo.wx.Article","item");
             }
 
         }
