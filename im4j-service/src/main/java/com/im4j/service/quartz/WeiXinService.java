@@ -24,7 +24,12 @@ public class WeiXinService {
 
     @Scheduled(cron="0/5 * *  * * ? ")   //每一个半小时获取一次token
     public void getToken(){
-        String res = HttpclientUtil.doGet("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxcb7ec3dde373f854&secret=844346396777e28aae830fcb4a2f8fe4");
-        redisService.add(Constants.ACCESS_TOKEN, JSONObject.parseObject(res).getString("access_token"));
+        String token = redisService.get(Constants.ACCESS_TOKEN);
+        logger.info("获取1:"+token);
+        if(null == token){
+            String res = HttpclientUtil.doGet("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxcb7ec3dde373f854&secret=844346396777e28aae830fcb4a2f8fe4");
+            redisService.add(Constants.ACCESS_TOKEN, JSONObject.parseObject(res).getString("access_token"),7000);
+        }
+        logger.info("获取2:"+redisService.get(Constants.ACCESS_TOKEN));
     }
 }

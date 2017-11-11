@@ -7,18 +7,24 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by chenzp on 2017/11/9 0009.
  */
 @Service
 public class RedisService {
+
     @Autowired
     private RedisTemplate<String, String> template;
 
 
     public void add(String key, String value) {
         template.opsForValue().set(key, value);
+    }
+
+    public void add(String key, String value, long time){
+        template.opsForValue().set(key, value, time, TimeUnit.SECONDS);
     }
 
     public String get(String key){
