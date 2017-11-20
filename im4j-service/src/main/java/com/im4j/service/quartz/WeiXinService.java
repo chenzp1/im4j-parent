@@ -22,7 +22,7 @@ public class WeiXinService {
     @Autowired
     private RedisService redisService;
 
-    @Scheduled(cron="0/5 * *  * * ? ")   //每一个半小时获取一次token
+    @Scheduled(cron="* 0/30 *  * * ? ")   //每一个半小时获取一次token
     public void getToken(){
         String token = redisService.get(Constants.ACCESS_TOKEN);
         logger.info("获取1:"+token);
